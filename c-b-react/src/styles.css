@@ -1,0 +1,29 @@
+body {
+    background-color: whitesmoke;
+}
+
+ul {
+    display: flex;
+    gap: 1rem;
+    list-style-type: none;
+    text-transform: capitalize;
+}
+
+.active {
+    color: red;
+}
+
+main p {
+    border: 1px solid black;
+    padding: 1rem;
+}
+
+.projects {
+    display: flex;
+    gap: .5rem;
+}
+
+.projects>div {
+    border: 1px solid;
+    padding: 1rem;
+}
