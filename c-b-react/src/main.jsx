@@ -2,47 +2,37 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import "./styles.css"
-
-// we call this a Prduct Component
-let Project = function (props) {
-  return <div>
-    <img src="https://picsum.photos/100/100" />
-    <h3>{props.title}</h3>
-    <p>{props.description}</p>
-  </div>
-}
+import CustomHeader from './components/Header'
+import Project from './components/Project'
+import Course from './components/Course'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-
-    <header>
-      <nav>
-        <ul>
-          <li><a className="active" href="#">home</a></li>
-          <li><a href="#">about</a></li>
-          <li><a href="#">contact</a></li>
-        </ul>
-      </nav>
-    </header>
-    <hr />
-    <main>
-      <div>
-        sum:{1 + 2}
-      </div>
-      <p >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa sunt amet perferendis illum debitis totam nulla omnis dicta distinctio perspiciatis commodi dolor quis, voluptas quibusdam odio, consequatur mollitia! Velit, optio!
-      </p>
-    </main>
-    <hr />
-    <h2>Projects</h2>
+  // <React.StrictMode>
+  <div>
+    <CustomHeader />
+    <h1>projects</h1>
     <div className="projects">
-      {/* in normal function we call the function   Produject("one") 
-            but in react, 
-            we pass props in Components 
-      */}
-      <Project title="one" description = "des-one"/>  
-      <Project title="two" description = "des-two"/>  
-      <Project title="three" description = "des-theree"/>  
+      <Project
+        title="git"
+        description="lorem ipsum ....."
+        image="https://www.20i.com/blog/wp-content/uploads/2022/08/git-blog-header-740x416.png"
+      />
+      {/* title here is known as props rather than attribute */}
+      <Project
+        title="node"
+        description="node description"
+        image="https://www.freecodecamp.org/news/content/images/size/w2000/2022/07/1200px-Node.js_logo.svg.png"
+      />
+    </div>
+
+    <hr />
+
+    <h2>Courses</h2>
+    <div className="courses">
+        <Course/>
+        <Course/>
+        <Course/>
+      
     </div>
 
 
@@ -50,5 +40,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 
 
-  </React.StrictMode>,
+  </div>
+
+
+  // </React.StrictMode>,
 )

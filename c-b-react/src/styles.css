@@ -18,12 +18,24 @@ main p {
     padding: 1rem;
 }
 
-.projects {
+.projects,
+.courses {
     display: flex;
     gap: .5rem;
 }
 
-.projects>div {
+.projects>div,
+.courses>div {
     border: 1px solid;
     padding: 1rem;
+}
+
+.project img {
+    height: 250px;
+    width: 250px;
+    object-fit: contain;
+}
+
+.project button {
+    padding: .5rem 1rem;
 }
