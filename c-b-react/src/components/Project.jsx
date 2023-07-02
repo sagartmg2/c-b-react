@@ -1,7 +1,7 @@
 // function Project(props) {
 // let { title, description } = props  // object desctructuring...
 
-import { DeleteButton, EditButton } from "./Buttons"
+import { DeleteButton, EditButton as EditButtonTwo } from "./Buttons"
 
 
 function Project({ title, description, image }) {
@@ -18,7 +18,7 @@ function Project({ title, description, image }) {
         <button style={btnStyle}>edit</button>
         <button style={{ backgroundColor: "red", color: "white" }}  >delete</button> */}
         
-        <EditButton/>
+        <EditButtonTwo/>
         <DeleteButton/>
 
     </div>

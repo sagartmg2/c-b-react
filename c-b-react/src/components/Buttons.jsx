@@ -13,4 +13,9 @@ export function DeleteButton() {
 }
 
 
-// export default {  }
+/* 
+export default { 
+    Editbutton: EditButton,
+    DeleteButton: DeleteButton
+ }
+ */
