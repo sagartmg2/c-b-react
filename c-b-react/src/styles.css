@@ -2,7 +2,7 @@ body {
     background-color: whitesmoke;
 }
 
-ul {
+header ul {
     display: flex;
     gap: 1rem;
     list-style-type: none;

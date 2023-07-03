@@ -1,11 +1,13 @@
- function Header() {
+import { Link } from "react-router-dom"
+
+function Header() {
     return <header>
         <ul>
             <li>
-                <a>home</a>
+                <Link to="/">home</Link>
             </li>
             <li>
-                <a>about</a>
+                <Link to="/users">users</Link>
             </li>
         </ul>
     </header>

@@ -6,25 +6,38 @@ import { Fragment, useState } from "react"
         
 */
 
-export default () => {
+let count = 1
 
-    const [value, setValue] = useState(100)
+const Counter = () => {
+    console.log("re-render")
 
-    let count = 1
+    const [value, setValue] = useState(0) //     returrns  [initialValue, mutatorFunction]
+
 
     function increment() {
         count++
+        console.log("increment", { count })
         setValue(value + 1)
-        console.log({ count })
     }
 
-    console.log("render")
+    const decrement = () => {
+        setValue(value - 1)
+    }
+    const reset = () => {
+        setValue(0)
+    }
+
+
     return <Fragment>
         <h1>Counter: {count} </h1>
         <h1>value: {value} </h1>
 
         {/* <button onclick={increment()}>increment</button> */}
+        <button onClick={decrement}>decrement</button>
+        <button onClick={reset}>reset</button>
         <button onClick={increment}>increment</button>
     </Fragment>
 
 } 
+
+export default Counter
