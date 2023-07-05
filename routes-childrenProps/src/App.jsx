@@ -3,13 +3,15 @@ import Users from "./pages/Users"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import "./App.css"
 import Layout from "./components/Layout"
+import UsersApi from "./pages/UsersApi"
 
 function App() {
     return <>
         <Layout>
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="" element={<Home />} />
                 <Route path="/users" element={<Users />} />
+                <Route path="/users-api" element={<UsersApi />} />
                 <Route path="/products"  >
                     <Route path="" element={<h1>Products list</h1>} />
                     <Route path="one" element={<h1>One</h1>} />
@@ -17,6 +19,8 @@ function App() {
             </Routes>
         </Layout>
         <hr />
+
+       
     </>
 }
 export default App

@@ -4,7 +4,9 @@ import Header from "./Header"
 function Index(props) {
     return <>
         <Header />
-        {props.children}
+        {
+            props.children
+        }
         <Footer />
     </>
 }

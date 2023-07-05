@@ -7,10 +7,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
-      <div>
-        <p>one</p>
-        <p>tow</p>
-      </div>
+     
     </BrowserRouter>
   </React.StrictMode>,
 )
