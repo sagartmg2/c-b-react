@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import "./App.css"
 import Layout from "./components/Layout"
 import UsersApi from "./pages/UsersApi"
+import Products from "./pages/Products"
 
 function App() {
     return <>
@@ -13,7 +14,7 @@ function App() {
                 <Route path="/users" element={<Users />} />
                 <Route path="/users-api" element={<UsersApi />} />
                 <Route path="/products"  >
-                    <Route path="" element={<h1>Products list</h1>} />
+                    <Route path="" element={<Products/>} />
                     <Route path="one" element={<h1>One</h1>} />
                 </Route>
             </Routes>
