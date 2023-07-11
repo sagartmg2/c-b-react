@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import Product from "../components/Product"
 
 /* CRUD operations in database
     create read update delete
@@ -72,10 +73,7 @@ function Products(props) {
                     return <li key={product.id} style={{
                         marginBottom: "1rem"
                     }}>
-                        <div>
-                            <img width={150} height={150} src={product.thumbnail} alt="" />
-                            <button onClick={addToCart}>add To Cart</button>
-                        </div>
+                        <Product cartCount={props.cartCount} setcartCount={props.setcartCount}  product={product}/>
                     </li>
                 })
             }

@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
 function Header(props) {
+    let reduxStore = useSelector((store) =>{ return store.cart.value }) 
     return <nav>
         <ul style={{
             display: "flex",
@@ -22,6 +24,9 @@ function Header(props) {
             </li>
             <li>
                 <Link to="/carts">carts ({props.cartCount}) </Link>
+            </li>
+            <li>
+                <Link to="/carts">reduxCarts ( {reduxStore}) </Link>
             </li>
         </ul>
         <hr />
