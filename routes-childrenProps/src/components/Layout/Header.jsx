@@ -1,6 +1,6 @@
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
-function Header() {
+function Header(props) {
     return <nav>
         <ul style={{
             display: "flex",
@@ -19,6 +19,9 @@ function Header() {
             </li>
             <li>
                 <Link to="/products">products</Link>
+            </li>
+            <li>
+                <Link to="/carts">carts ({props.cartCount}) </Link>
             </li>
         </ul>
         <hr />
