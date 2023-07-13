@@ -1,15 +1,17 @@
 import { AiOutlineMail } from "react-icons/ai";
+import Todos from "./components/Todos";
 
 
 function App() {
 
   return (
     <>
-      <header>
+      {/* <header>
         < AiOutlineMail class  /> em@em.com
 
 
-      </header>
+      </header> */}
+      <Todos/>
     </>
   )
 }
