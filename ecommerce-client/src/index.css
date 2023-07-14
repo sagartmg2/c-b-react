@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.container{
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: .75rem;
+    padding-right: .75rem;
+}
