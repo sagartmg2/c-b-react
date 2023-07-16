@@ -3,9 +3,55 @@
 @tailwind utilities;
 
 
-.container{
+.container {
     margin-right: auto;
     margin-left: auto;
     padding-left: .75rem;
     padding-right: .75rem;
 }
+
+@media(min-width:576px){
+    .container{
+        max-width: 540px;
+    }
+}
+@media(min-width:768px){
+    .container{
+        max-width: 720px;
+    }
+}
+@media(min-width:992px){
+    .container{
+        max-width: 960px;
+    }
+}
+@media(min-width:1200px){
+    .container{
+        max-width: 1140px;
+    }
+}
+@media(min-width:1400px){
+    .container{
+        max-width: 1320px;
+    }
+}
+
+a:hover{
+    
+}
+
+/* body {
+    background-color: white;
+}
+
+@media (min-width:576px) {
+    body {
+        background-color: orange;
+    }
+}
+
+@media (min-width:768px) {
+    body {
+        background-color: teal;
+    }
+} */
