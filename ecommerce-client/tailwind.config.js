@@ -17,6 +17,11 @@ export default {
         'lg': '992px',
         'xl': '1200px',
         '2xl': '1400px',
+      },
+      backgroundImage: {
+        'banner-1': "url('./src/assets/images/banner-1.png')",
+        'banner-2': "url('./src/assets/images/banner-2.png')",
+        'banner-3': "url('./src/assets/images/banner-3.png')",
       }
 
     },

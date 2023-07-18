@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 
+
+
 .container {
     margin-right: auto;
     margin-left: auto;
@@ -36,9 +38,6 @@
     }
 }
 
-a:hover{
-    
-}
 
 /* body {
     background-color: white;
