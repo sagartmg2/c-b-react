@@ -22,7 +22,7 @@ export default function Header() {
                     </div>
                 </nav>
             </header>
-            <header className=" ">
+            <header className=" bg-white ">
                 <nav className="container py-5 flex flex-col  gap-4  items-center  md:flex-row lg:gap-8 2xl:gap-16 ">
                     <p className="text-4xl font-bold text-primary">Hekto</p>
                     <div className=" flex  flex-col  gap-4 items-center grow justify-between md:flex-row">
