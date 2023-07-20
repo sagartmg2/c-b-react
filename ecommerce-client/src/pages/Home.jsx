@@ -1,11 +1,11 @@
-import React from 'react'
-import Banner1 from "../assets/images/banner-1.png"
-import Banner2 from "../assets/images/banner-2.png"
-import Banner3 from "../assets/images/banner-3.png"
+import { useEffect, useState } from 'react'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom"
-import FeaturedProduct from '../components/FeaturedProduct';
+import SingleProduct from '../components/SingleProduct';
+import axios from 'axios';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 function CarouselItem(props) {
   return (
@@ -23,27 +23,62 @@ function CarouselItem(props) {
 }
 
 export default function Home() {
+  console.log("re-render...")
+
+  const [products, setProducts] = useState([]);
+  // let products = "list of products"
+
+  
+  
+  useEffect(() =>{
+    axios.get("https://ecommerce-sagartmg2.vercel.app/api/products/trending")
+    .then((res) => {
+      // console.log(res)
+      // products = res.data.data
+      setProducts(res.data.data)
+      // console.log({products})
+    })
+
+  },[])
+
+
+
+
   return (
     <>
-      <section >
-        <Carousel
-          showThumbs={false}
-          swipeable={true}
-          emulateTouch={true}
-        >
-          <CarouselItem banner=" bg-banner-1" />
-          <CarouselItem banner="bg-banner-2" />
-          <CarouselItem banner="bg-banner-3" />
-        </Carousel>
-        <div className="container">
-        </div>
-      </section >
-      <section className='container my-28 grid grid-cols-4 gap-4 '>
-        <FeaturedProduct/>
-        <FeaturedProduct/>
-        <FeaturedProduct/>
-        <FeaturedProduct/>
-      </section>
+      <Carousel
+        showThumbs={false}
+        swipeable={true}
+        emulateTouch={true}
+      >
+        <CarouselItem banner=" bg-banner-1" />
+        <CarouselItem banner="bg-banner-2" />
+        <CarouselItem banner="bg-banner-3" />
+      </Carousel>
+      <div className='container'>
+
+     
+        <section className=' my-28 grid grid-cols-4 gap-4 '>
+          <Skeleton height={150}/>
+          <Skeleton height={150}/>
+          <Skeleton height={150}/>
+          <Skeleton height={150}/>
+          {/* {
+            products.map(proudct => {
+              return <SingleProduct />
+            })
+          } */}
+        </section>
+        <p className='text-5xl text-center font-bold text-primary-dark mb-11'>Latest Products</p>
+        <section className='grid grid-cols-3 gap-4'>
+          <SingleProduct type="latest" />
+          <SingleProduct type="latest" />
+          <SingleProduct type="latest" />
+          <SingleProduct type="latest" />
+          <SingleProduct type="latest" />
+          <SingleProduct type="latest" />
+        </section>
+      </div>
     </>
 
   )

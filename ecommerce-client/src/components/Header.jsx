@@ -24,7 +24,7 @@ export default function Header() {
             </header>
             <header className=" bg-white ">
                 <nav className="container py-5 flex flex-col  gap-4  items-center  md:flex-row lg:gap-8 2xl:gap-16 ">
-                    <p className="text-4xl font-bold text-primary">Hekto</p>
+                    <p className="text-4xl font-bold text-primary-dark">Hekto</p>
                     <div className=" flex  flex-col  gap-4 items-center grow justify-between md:flex-row">
                         <ul className="flex items-center gap-9 ">
                             <li>
