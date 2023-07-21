@@ -16,7 +16,7 @@ export default function Header() {
                         <BsTelephoneInbound className="inline" /> <span>+977 09802222</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <span>Login</span>
+                        <Link to={"/login"}> Login</Link>
                         <AiOutlineUser className="inline" />
                         <AiOutlineShoppingCart className="inline" />
                     </div>

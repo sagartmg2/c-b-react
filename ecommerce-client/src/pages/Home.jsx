@@ -26,20 +26,28 @@ export default function Home() {
   console.log("re-render...")
 
   const [products, setProducts] = useState([]);
+  const [latestProducts, setLatestProducts] = useState([]);
   // let products = "list of products"
 
-  
-  
-  useEffect(() =>{
-    axios.get("https://ecommerce-sagartmg2.vercel.app/api/products/trending")
-    .then((res) => {
-      // console.log(res)
-      // products = res.data.data
-      setProducts(res.data.data)
-      // console.log({products})
-    })
 
-  },[])
+
+  useEffect(() => {
+    axios.get("https://ecommerce-sagartmg2.vercel.app/api/products/trending")
+      .then((res) => {
+        // console.log(res)
+        // products = res.data.data
+        setProducts(res.data.data)
+        // console.log({products})
+      })
+    axios.get("https://ecommerce-sagartmg2.vercel.app/api/products")
+      .then((res) => {
+        // console.log(res)
+        // products = res.data.data
+        setLatestProducts(res.data.data[0].data)
+        // console.log({products})
+      })
+
+  }, [])
 
 
 
@@ -56,27 +64,46 @@ export default function Home() {
         <CarouselItem banner="bg-banner-3" />
       </Carousel>
       <div className='container'>
-
-     
         <section className=' my-28 grid grid-cols-4 gap-4 '>
-          <Skeleton height={150}/>
-          <Skeleton height={150}/>
-          <Skeleton height={150}/>
-          <Skeleton height={150}/>
-          {/* {
-            products.map(proudct => {
-              return <SingleProduct />
+          {
+            products.length == 0
+            &&
+            <>
+              <Skeleton height={150} />
+              <Skeleton height={150} />
+              <Skeleton height={150} />
+              <Skeleton height={150} />
+            </>
+          }
+          {
+            products.map(product => {
+              return <SingleProduct product={product} />
             })
-          } */}
+          }
         </section>
         <p className='text-5xl text-center font-bold text-primary-dark mb-11'>Latest Products</p>
         <section className='grid grid-cols-3 gap-4'>
-          <SingleProduct type="latest" />
-          <SingleProduct type="latest" />
-          <SingleProduct type="latest" />
-          <SingleProduct type="latest" />
-          <SingleProduct type="latest" />
-          <SingleProduct type="latest" />
+          {
+            latestProducts.length == 0
+            &&
+            <>
+              <Skeleton height={150} />
+              <Skeleton height={150} />
+              <Skeleton height={150} />
+              <Skeleton height={150} />
+              <Skeleton height={150} />
+              <Skeleton height={150} />
+            </>
+          }
+
+          {
+            latestProducts.map((product, index) => {
+              if (index > 5) {
+                return null
+              }
+              return <SingleProduct type="latest" product={product} />
+            })
+          }
         </section>
       </div>
     </>
