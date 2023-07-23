@@ -1,13 +1,29 @@
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import Chair from "../assets/images/chair.png"
 import ImageNotFound from "../assets/images/Image_not_available.png"
+import { toast } from "react-toastify";
 
 
 export default function SingleProduct({ type, product }) {
+
+    function addToCart (){
+        toast.dismiss()
+        toast.error("Login Required", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+    }
+
     return (
         <div className="relative rounded bg-white border text-center  shadow-md group hover:bg-primary  hover:text-white hover:border-primary ">
             <img
-                src={ImageNotFound}
+                src={ product.images[0] || ImageNotFound }
                 alt={`${product.name}`}
                 className={`w-full  bg-white   h-52 object-contain  `}
             />
@@ -15,7 +31,7 @@ export default function SingleProduct({ type, product }) {
                 <p className="my-2 text-lg text-secondary font-semibold group-hover:text-white ">{product.name} </p>
                 <p className="text-primary group-hover:text-white">${product.price}</p>
             </div>
-            <span className=" hidden  absolute left-4 top-4 bg-primary-light p-4 border group-hover:inline-block rounded-full text-black">
+            <span onClick={addToCart} className=" hidden  absolute left-4 top-4 bg-primary-light p-4 border group-hover:inline-block rounded-full text-black">
                 <AiOutlineShoppingCart className=" " />
             </span>
 

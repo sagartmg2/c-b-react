@@ -18,7 +18,9 @@
     201
     203
     204
-3
-4
+3 - redirect
+4  - client/end-user error
+    400 -> incorrent form values
+    401 -> unauthenticated // not logged in 
 5 - SERVER realted error
     500
