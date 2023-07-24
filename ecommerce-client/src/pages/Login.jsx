@@ -3,10 +3,13 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { setReduxUser } from '../redux/slice/userSlice';
+import { useDispatch } from 'react-redux';
 
-export default function Login() {
+export default function Login({ setUser }) {
     const [error, setError] = useState("");
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     // const notify = () => ;
 
@@ -18,7 +21,7 @@ export default function Login() {
             "email": e.target.email.value,
             "password": e.target.password.value,
         })
-            .then((res) => {
+            .then((res) => {  // if status code is 200  // status_code == 200
 
                 toast.success("Login Succesfu.", {
                     position: "top-right",
@@ -29,12 +32,15 @@ export default function Login() {
                     draggable: true,
                     progress: undefined,
                     theme: "colored",
-                    });
-                
+                });
+
+                dispatch(setReduxUser(res.data.user))
+                // setUser(res.data.user.name)
                 navigate("/")
 
             })
-            .catch((err) => {
+            .catch((err) => {  // status codes other than 200     // status codes !== 200
+                // console.log(err)
                 // console.log(err)
                 // console.log(err.response.data.msg)
                 // setError(err.response.data.msg)
@@ -70,7 +76,7 @@ export default function Login() {
                             <div>
                                 <label for="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                                 <div className="mt-2">
-                                    <input id="email" name="email" type="email" autocomplete="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                    <input value={"demo@demo.com"} id="email" name="email" type="email" autocomplete="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                 </div>
                             </div>
 
@@ -82,7 +88,7 @@ export default function Login() {
                                     </div>
                                 </div>
                                 <div className="mt-2">
-                                    <input id="password" name="password" type="password" autocomplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                    <input id="password" value={"password"} name="password" type="password" autocomplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                 </div>
                             </div>
 

@@ -4,20 +4,25 @@ import ImageNotFound from "../assets/images/Image_not_available.png"
 import { toast } from "react-toastify";
 
 
-export default function SingleProduct({ type, product }) {
+export default function SingleProduct({ type, product,user }) {
 
     function addToCart (){
         toast.dismiss()
-        toast.error("Login Required", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            });
+        if(user){
+            toast("Added to Cart")
+        }else{
+            toast.error("Login Required", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });
+        }
+        
     }
 
     return (

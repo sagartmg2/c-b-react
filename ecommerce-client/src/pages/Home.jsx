@@ -22,7 +22,7 @@ function CarouselItem(props) {
     </div>)
 }
 
-export default function Home() {
+export default function Home({user}) {
   console.log("re-render...")
 
   const [products, setProducts] = useState([]);
@@ -77,7 +77,7 @@ export default function Home() {
           }
           {
             products.map(product => {
-              return <SingleProduct product={product} />
+              return <SingleProduct user={user} product={product} />
             })
           }
         </section>

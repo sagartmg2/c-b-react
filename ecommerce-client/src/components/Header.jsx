@@ -1,11 +1,19 @@
 import { AiOutlineMail, AiOutlineSearch, AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 import { BsTelephoneInbound } from "react-icons/bs"
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom"
+import { logoutReduxUser, setReduxUser } from "../redux/slice/userSlice";
 
-export default function Header() {
+export default function Header({ user }) {
 
     const { pathname } = useLocation()
+    const reduxUser = useSelector((reduxStore) => { return reduxStore.user.value })
+    const dispatch = useDispatch()
     console.log(pathname)
+
+    const handleLogout = () => {
+        dispatch(logoutReduxUser())
+    }
 
     return (
         <>
@@ -16,7 +24,23 @@ export default function Header() {
                         <BsTelephoneInbound className="inline" /> <span>+977 09802222</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <Link to={"/login"}> Login</Link>
+                        {
+                            reduxUser?.name
+                            &&
+                            <span>
+                                user: {reduxUser.name}
+                            </span>
+                        }
+                        &nbsp;
+
+                        {
+                            reduxUser  //{}
+                                ?
+                                <button onClick={handleLogout}>logout</button>
+                                :
+                                <Link to={"/login"}> Login</Link>
+                        }
+
                         <AiOutlineUser className="inline" />
                         <AiOutlineShoppingCart className="inline" />
                     </div>

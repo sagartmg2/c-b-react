@@ -10,6 +10,9 @@
     POST - crate
     PUT/PATCH - update
     DELETE 
+
+    
+    OPTIONS  // backend/server is checking if our browser has perssion to access api or not
 -->
 
 <!-- STATUS CODES -->
