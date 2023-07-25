@@ -2,15 +2,17 @@ import { AiOutlineShoppingCart } from "react-icons/ai"
 import Chair from "../assets/images/chair.png"
 import ImageNotFound from "../assets/images/Image_not_available.png"
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 
-export default function SingleProduct({ type, product,user }) {
+export default function SingleProduct({ type, product, user }) {
+    const reduxUser = useSelector((wholeReduxStore) => { return wholeReduxStore.user.value })
 
-    function addToCart (){
+    function addToCart() {
         toast.dismiss()
-        if(user){
+        if (reduxUser) {
             toast("Added to Cart")
-        }else{
+        } else {
             toast.error("Login Required", {
                 position: "top-right",
                 autoClose: 5000,
@@ -20,15 +22,15 @@ export default function SingleProduct({ type, product,user }) {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-                });
+            });
         }
-        
+
     }
 
     return (
         <div className="relative rounded bg-white border text-center  shadow-md group hover:bg-primary  hover:text-white hover:border-primary ">
             <img
-                src={ product.images[0] || ImageNotFound }
+                src={product.images[0] || ImageNotFound}
                 alt={`${product.name}`}
                 className={`w-full  bg-white   h-52 object-contain  `}
             />

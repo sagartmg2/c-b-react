@@ -35,6 +35,8 @@ export default function Login({ setUser }) {
                 });
 
                 dispatch(setReduxUser(res.data.user))
+
+                localStorage.setItem("access_token",res.data.access_token)
                 // setUser(res.data.user.name)
                 navigate("/")
 

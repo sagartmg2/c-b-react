@@ -13,6 +13,7 @@ export const userSlice = createSlice({
     },
     logoutReduxUser: (state) => {
       state.value = null
+      localStorage.clear()
     }
   },
 })

@@ -1,7 +1,7 @@
 import { AiOutlineMail, AiOutlineSearch, AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 import { BsTelephoneInbound } from "react-icons/bs"
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom"
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
 import { logoutReduxUser, setReduxUser } from "../redux/slice/userSlice";
 
 export default function Header({ user }) {
@@ -9,6 +9,7 @@ export default function Header({ user }) {
     const { pathname } = useLocation()
     const reduxUser = useSelector((reduxStore) => { return reduxStore.user.value })
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     console.log(pathname)
 
     const handleLogout = () => {
@@ -64,13 +65,28 @@ export default function Header({ user }) {
                                 </Link>
                             </li>
                             <li>
+                                {/* url == "/proudcts" text-secondary */}
+                                <Link
+                                    to="/products/create"
+                                    className={` ${pathname == "/products/crate" ? "text-secondary" : ""}  hover:text-secondary `}
+                                >
+                                    Create Products
+                                </Link>
+                            </li>
+                            <li>
                                 <a href="/carts" className="flex items-center hover:text-secondary">  <span>cart</span> <AiOutlineShoppingCart className="inline" /> </a>
                             </li>
                         </ul>
-                        <form className="flex">
-                            <input className="border-2 border-r-0 px-2  focus:border-secondary focus:outline-none " />
+                        <form className="flex" onSubmit={(e) => {
+                            e.preventDefault()
+                            navigate("/products?search_term=" + e.target.search_term.value)
+
+                        }}>
+                            <input
+                                type="search"
+                                name="search_term"
+                                className="border-2 border-r-0 px-2  focus:border-secondary focus:outline-none " />
                             <button className="bg-secondary  p-3 text-white">
-                                {/* <button className="bg-regal-blue  p-3 text-white"> */}
                                 <AiOutlineSearch />
                             </button>
                         </form>
