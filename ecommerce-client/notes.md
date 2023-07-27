@@ -25,5 +25,7 @@
 4  - client/end-user error
     400 -> incorrent form values
     401 -> unauthenticated // not logged in 
+    403 -> forbidden // unauthorized // do not have correct access/roles 
+    404 -> page not found/ data not found / resources not found.
 5 - SERVER realted error
     500

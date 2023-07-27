@@ -10,6 +10,8 @@ import { useState } from "react";
 import axios from "axios";
 import { setReduxUser } from "./redux/slice/userSlice";
 import { useDispatch } from "react-redux";
+import SingleProductDetail from "./pages/SingleProductDetail";
+import CreateProduct from "./pages/CreateProduct";
 // MindRisers!@
 
 function App() {
@@ -34,7 +36,14 @@ function App() {
       <Header user={user} />
       <Routes>
         <Route path="/" element={<Home user={user} />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/products"  >
+
+          <Route path=""  element={<Products />} />
+          <Route path=":id" element={<SingleProductDetail />} />
+          <Route path="create" element={<CreateProduct/>} />
+
+        </Route>
+
         <Route path="/carts" element={<h1> Carts ..</h1>} />
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/signup" element={<Signup />} />
