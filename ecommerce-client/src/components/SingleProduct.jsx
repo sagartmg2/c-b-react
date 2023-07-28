@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 export default function SingleProduct({ type, product, user }) {
     const reduxUser = useSelector((wholeReduxStore) => { return wholeReduxStore.user.value })
 
-    function addToCart() {
+    function addToCart(e) {
+        e.preventDefault()
         toast.dismiss()
         if (reduxUser) {
             toast("Added to Cart")

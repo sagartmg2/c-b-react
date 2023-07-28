@@ -14,6 +14,7 @@ export default function Header({ user }) {
 
     const handleLogout = () => {
         dispatch(logoutReduxUser())
+        navigate("/login")
     }
 
     return (
