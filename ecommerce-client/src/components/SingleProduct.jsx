@@ -13,7 +13,11 @@ export default function SingleProduct({ type, product, user }) {
         e.preventDefault()
         toast.dismiss()
         if (reduxUser) {
-            toast("Added to Cart")
+            if (reduxUser.role == "buyer") {
+                /* add cart items in redux */
+            } else {
+                toast.error("Forbidden ! only for buyer")
+            }
         } else {
             toast.error("Login Required", {
                 position: "top-right",

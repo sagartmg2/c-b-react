@@ -3,6 +3,7 @@ import { BsTelephoneInbound } from "react-icons/bs"
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
 import { logoutReduxUser, setReduxUser } from "../redux/slice/userSlice";
+import ProtectedComponent from "./ProtectedComponent";
 
 export default function Header({ user }) {
 
@@ -44,7 +45,10 @@ export default function Header({ user }) {
                         }
 
                         <AiOutlineUser className="inline" />
-                        <AiOutlineShoppingCart className="inline" />
+                        <ProtectedComponent role={"buyer"}>
+                            <AiOutlineShoppingCart className="inline" />
+                        </ProtectedComponent>
+
                     </div>
                 </nav>
             </header>
@@ -65,18 +69,23 @@ export default function Header({ user }) {
                                     Products
                                 </Link>
                             </li>
-                            <li>
-                                {/* url == "/proudcts" text-secondary */}
-                                <Link
-                                    to="/products/create"
-                                    className={` ${pathname == "/products/crate" ? "text-secondary" : ""}  hover:text-secondary `}
-                                >
-                                    Create Products
-                                </Link>
-                            </li>
-                            <li>
-                                <a href="/carts" className="flex items-center hover:text-secondary">  <span>cart</span> <AiOutlineShoppingCart className="inline" /> </a>
-                            </li>
+                            <ProtectedComponent role="seller">
+                                <li>
+                                    <Link
+                                        to="/products/create"
+                                        className={` ${pathname == "/products/crate" ? "text-secondary" : ""}  hover:text-secondary `}
+                                    >
+                                        Create Products
+                                    </Link>
+                                </li>
+                            </ProtectedComponent>
+
+
+                            <ProtectedComponent role="buyer">
+                                <li>
+                                    <Link to="/carts" className="flex items-center hover:text-secondary">  <span>cart</span> <AiOutlineShoppingCart className="inline" /> </Link>
+                                </li>
+                            </ProtectedComponent>
                         </ul>
                         <form className="flex" onSubmit={(e) => {
                             e.preventDefault()

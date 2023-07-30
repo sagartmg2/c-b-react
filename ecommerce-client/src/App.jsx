@@ -12,6 +12,7 @@ import { setReduxUser } from "./redux/slice/userSlice";
 import { useDispatch } from "react-redux";
 import SingleProductDetail from "./pages/SingleProductDetail";
 import CreateProduct from "./pages/CreateProduct";
+import ProtectedRoute from "./components/ProtectedRoute";
 // MindRisers!@
 
 function App() {
@@ -38,13 +39,18 @@ function App() {
         <Route path="/" element={<Home user={user} />} />
         <Route path="/products"  >
 
-          <Route path=""  element={<Products />} />
+          <Route path="" element={<Products />} />
           <Route path=":id" element={<SingleProductDetail />} />
-          <Route path="create" element={<CreateProduct/>} />
+
+          <Route path="create" element={<ProtectedRoute  role="seller" />} >
+            <Route path="" element={<CreateProduct/>} />
+          </Route >
 
         </Route>
 
-        <Route path="/carts" element={<h1> Carts ..</h1>} />
+        <Route path="/carts" element={<ProtectedRoute role = "buyer" />}>
+          <Route path="" element={<h1> Cart </h1>} />
+        </Route>
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
