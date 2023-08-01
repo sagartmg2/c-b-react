@@ -3,10 +3,20 @@ import { useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import SingleProduct from '../components/SingleProduct'
 import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import Pagination from 'rc-pagination';
+import NOProduct from "../assets/images/no-product.jpg"
 
 export default function Products() {
+    const [pagiationData, setPaginationData] = useState({
+        total: 0,
+        page: 1,
+        per_page: 25
+
+    })
+    const [isFetching, setIsFetching] = useState(true)
     const [products, setProducts] = useState([])
     const navigate = useNavigate()
+    const [currentSearchParams, setSearchParams] = useSearchParams()
 
     let params = useLocation()
     console.log(params)  //{search}
@@ -15,8 +25,13 @@ export default function Products() {
     useEffect(() => {
         axios.get("https://ecommerce-sagartmg2.vercel.app/api/products" + params.search)
             .then(res => {
-                console.log();
+                setIsFetching(false)
+
                 setProducts(res.data.data[0].data)
+
+                if (res.data.data[0].metadata[0]) {
+                    setPaginationData(res.data.data[0].metadata[0])
+                }
             })
     }, [params.search])
 
@@ -35,19 +50,34 @@ export default function Products() {
                 <div className='mb-12 flex  items-center justify-between'>
                     <div>
                         <p className='text-primary-dark text-3xl font-bold'>Ecommerce Acceories & Fashion item </p>
-                        <p>25 out of 50 </p>
+                        <Pagination
+                            total={pagiationData.total}
+                            pageSize={pagiationData.per_page}
+                            prevIcon="< prev "
+                            nextIcon=" next > "
+                            current={pagiationData.page}
+                            onChange={(pageNumber) => {
+                                currentSearchParams.set("page", pageNumber)
+                                setSearchParams(currentSearchParams)
+                            }}
+                            showTotal={(total, range) =>
+                                `${range[0]} - ${range[1]} of ${total} items`
+                            }
+                        />
                     </div>
                     <div className='flex gap-4'>
-                        <select name="" id="" onChange={(e) =>{
-                            navigate("/products?per_page=" + e.target.value)
-                            
+                        <select name="" id="" onChange={(e) => {
+                            currentSearchParams.set("per_page", e.target.value)
+                            setSearchParams(currentSearchParams)
+
                         }}>
                             <option value="25">25</option>
                             <option value="50">50</option>
                             <option value="100">100</option>
                         </select>
                         <select name="" id="" onChange={(e) => {
-                            navigate("/products?sort=" + e.target.value)
+                            currentSearchParams.set("sort", e.target.value)
+                            setSearchParams(currentSearchParams)
                         }}>
                             <option value="datedesc"> latest </option>
                             <option value="pricedesc">price desc</option>
@@ -61,9 +91,9 @@ export default function Products() {
                     <div className='border'>
                         filters..
                     </div>
-                    <div className='border  lg:col-span-3 grid  grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                    <div className='  lg:col-span-3 grid  grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
                         {
-                            products.length == 0
+                            isFetching
                             &&
                             <>
                                 <Skeleton height={150} />
@@ -75,6 +105,13 @@ export default function Products() {
                                 <Skeleton height={150} />
                                 <Skeleton height={150} />
                             </>
+                        }
+
+                        {
+                            (!isFetching && products.length == 0)
+                            &&
+                            <img className='mx-auto' src={NOProduct} alt="" />
+
                         }
 
                         {

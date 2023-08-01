@@ -67,3 +67,23 @@
         background-color: teal;
     }
 } */
+
+.rc-pagination{
+    display: flex;
+}
+.rc-pagination li{
+    border: 1px solid black;
+    padding: 1rem;
+    cursor: pointer;
+}
+.rc-pagination-options{
+    display: none;
+}
+.rc-pagination-item-active{
+    background-color: grey;
+    color: white;
+}
+.rc-pagination-disabled{
+    opacity: .5;
+    cursor: no-drop !important;
+}
