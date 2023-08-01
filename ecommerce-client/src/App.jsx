@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import SingleProductDetail from "./pages/SingleProductDetail";
 import CreateProduct from "./pages/CreateProduct";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Cart from "./pages/Cart";
 // MindRisers!@
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
         </Route>
 
         <Route path="/carts" element={<ProtectedRoute role = "buyer" />}>
-          <Route path="" element={<h1> Cart </h1>} />
+          <Route path="" element={<Cart/>} />
         </Route>
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/signup" element={<Signup />} />

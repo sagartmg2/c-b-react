@@ -12,6 +12,7 @@ export default function CreateProduct() {
         images: [],
         description: ""
     }
+    
     const [data, setData] = useState(initalState);
 
     function handleSubmit(e) {

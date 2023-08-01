@@ -9,6 +9,7 @@ export default function Header({ user }) {
 
     const { pathname } = useLocation()
     const reduxUser = useSelector((reduxStore) => { return reduxStore.user.value })
+    const cartItems = useSelector((reduxStore) => { return reduxStore.cart.cartItems })
     const dispatch = useDispatch()
     const navigate = useNavigate()
     console.log(pathname)
@@ -17,6 +18,11 @@ export default function Header({ user }) {
         dispatch(logoutReduxUser())
         navigate("/login")
     }
+
+    let totalCartItems = 0
+    cartItems.forEach(item => {
+        totalCartItems += item.quantity
+    })
 
     return (
         <>
@@ -83,7 +89,7 @@ export default function Header({ user }) {
 
                             <ProtectedComponent role="buyer">
                                 <li>
-                                    <Link to="/carts" className="flex items-center hover:text-secondary">  <span>cart</span> <AiOutlineShoppingCart className="inline" /> </Link>
+                                    <Link to="/carts" className="flex items-center hover:text-secondary">  <span>cart</span> <AiOutlineShoppingCart className="inline" /> ( {totalCartItems}) </Link>
                                 </li>
                             </ProtectedComponent>
                         </ul>

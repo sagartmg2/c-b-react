@@ -32,6 +32,8 @@ export default function SingleProductDetail() {
             JSON.stringify(product)
            }
 
+           <button className='btn'> add to Cart</button>
+
         </div>
     )
 }

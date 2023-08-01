@@ -2,19 +2,23 @@ import { AiOutlineShoppingCart } from "react-icons/ai"
 import Chair from "../assets/images/chair.png"
 import ImageNotFound from "../assets/images/Image_not_available.png"
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch} from "react-redux";
 import { Link } from "react-router-dom";
+import { addToRecuxCart, setReduxCart } from "../redux/slice/cartSlice";
+
 
 
 export default function SingleProduct({ type, product, user }) {
     const reduxUser = useSelector((wholeReduxStore) => { return wholeReduxStore.user.value })
+    const dispatch = useDispatch()
 
     function addToCart(e) {
         e.preventDefault()
         toast.dismiss()
         if (reduxUser) {
             if (reduxUser.role == "buyer") {
-                /* add cart items in redux */
+                dispatch(addToRecuxCart(product))
+                
             } else {
                 toast.error("Forbidden ! only for buyer")
             }
